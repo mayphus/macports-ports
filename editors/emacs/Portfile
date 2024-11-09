@@ -277,6 +277,8 @@ if {$subport eq "emacs-app" || $subport eq "emacs-app-devel"} {
             ${destroot}${applications_dir}/Emacs.app/Contents/Resources/site-lisp/site-start.el
         reinplace "s|__PREFIX__|${prefix}|g" \
             ${destroot}${applications_dir}/Emacs.app/Contents/Resources/site-lisp/site-start.el
+        # sign the app
+        codesign --deep --force --sign - ${destroot}${applications_dir}/Emacs.app
     }
 
     variant imagemagick description {Use ImageMagick} {
